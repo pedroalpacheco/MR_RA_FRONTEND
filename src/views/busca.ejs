@@ -1,0 +1,59 @@
+<head>
+  <%- include('./head'); %>
+    <meta name="viewport" content="width=device-width">
+</head>
+<p class="text-warning bg-dark">Buscando por:
+  <%= buscando %>
+</p>
+<hr>
+<%- include('./buscainicial'); %>
+  <hr>
+
+  <% reclames.consultadados.forEach(reclame=> { %>
+    <div class="container">
+      <div class="card" style="width: 58rem;">
+        <div class="card-body">
+          <div class="card-header">
+            <h5 class="card-title">TITULO: <%= reclame.titulo %>
+            </h5>
+          </div>
+          <p>
+          <h6 class="card-subtitle mb-2 text-muted">LOCAL: <%= reclame.local %>
+              </p>
+          </h6>
+          <p class="card-text">RECLAMAÇÃO: <%= reclame.reclamacao %>
+          </p>
+          <a href=<%=reclame.link %> class="card-link" target="_blank" rel="noopener noreferrer">Reclamação Original</a>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+
+      <nav></nav>
+      <p>
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <% if(reclames.num> 1) {%>
+            <a class="page-link" href="searching?search=<%= buscando %>&pg=<%= reclames.num - 1 %>"
+              aria-label="Anterior">
+              <span class="sr-only">
+                < Anterior </span>
+                  <% } %>
+            </a>
+        </li>
+
+        <li class="page-item">
+          <% if(reclames.next) {%>
+            <a class="page-link" href="searching?search=<%= buscando %>&pg=<%= reclames.num + 1 %>"
+              aria-label="Próximo">
+              <span class="sr-only"> Próximo > </span>
+              <% } %>
+            </a>
+        </li>
+      </ul>
+      </nav>
+      </p>
+
+      <footer>
+        <%- include('./footer'); %>
+      </footer>
